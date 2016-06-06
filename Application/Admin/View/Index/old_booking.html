@@ -16,7 +16,7 @@
 	<script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 	<script>
         $(function(){
-            $(".title").find("ul li:eq(0)").addClass("active");
+            $(".title").find("ul li:eq(2)").addClass("active");
         });
         $(document).ready(function(){
             setInterval(function(){
@@ -27,13 +27,6 @@
                     }
                 });
             },100);
-            $(".delete").click(function(){
-                var id = $(this).children('p').html();
-                $.post("__APP__/Admin/Index/dele_user?id="+id,function(data){
-                    alert(data);
-                    window.location.href="__APP__/Admin/Index/index";
-                });
-            });
         });
     </script>
 </head>
@@ -56,19 +49,19 @@
     </div>
     <div class="row">
         <div class="col-sm-offset-3 col-sm-6" style="margin-top: 1%; background-color: #FFFFFF; height: 500px; border: #CCC solid 1px; box-shadow: 2px 2px 10px #c0c0c0;" >
-            <h3 style="text-align: center;">管理用户</h3>
+            <h3 style="text-align: center;">历史订单</h3>
             <table class="table">
-                <tr><th>Username</th><th>Name</th><th>Delete</th></tr>
+                <tr><th>BookingNumber</th><th>Status</th><th>Time</th></tr>
                 <volist id="li" name="li">
                     <tr>
-                    <td><a href="__APP__/Admin/Index/show_user?id={$li.id}" style="text-decoration: none;">{$li.username}</a>
+                    <td><a href="__APP__/Admin/Index/show_booking?id={$li.id}" style="text-decoration: none;">{$li.id}</a>
                     </td>
                     <td>
-                        {$li.name}
+                        <if condition="$li['status'] eq 0">未接单</h4><elseif condition="$li['status'] eq 1"/>已接单</h4><else />已拒绝</h4>
+                        </if>
                     </td>
                     <td>
-                        <button type="button" class="delete btn btn-danger">delete<p style="display: none;">{$li.id}</p>
-                        </button>
+                        {$li.time}
                     </td>
                     </tr>
                 </volist>   

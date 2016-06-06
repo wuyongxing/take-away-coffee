@@ -16,7 +16,7 @@
 	<script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 	<script>
         $(function(){
-            $(".title").find("ul li:eq(0)").addClass("active");
+            $(".title").find("ul li:eq(3)").addClass("active");
         });
         $(document).ready(function(){
             setInterval(function(){
@@ -29,9 +29,9 @@
             },100);
             $(".delete").click(function(){
                 var id = $(this).children('p').html();
-                $.post("/take-away-coffee/index.php/Admin/Index/dele_user?id="+id,function(data){
+                $.post("/take-away-coffee/index.php/Admin/Index/dele_goods?id="+id,function(data){
                     alert(data);
-                    window.location.href="/take-away-coffee/index.php/Admin/Index/index";
+                    window.location.href="/take-away-coffee/index.php/Admin/Index/goods";
                 });
             });
         });
@@ -56,14 +56,14 @@
     </div>
     <div class="row">
         <div class="col-sm-offset-3 col-sm-6" style="margin-top: 1%; background-color: #FFFFFF; height: 500px; border: #CCC solid 1px; box-shadow: 2px 2px 10px #c0c0c0;" >
-            <h3 style="text-align: center;">管理用户</h3>
+            <h3 style="display: inline-block; margin-left: 40%;">管理商品</h3><button style="float:right; margin-top: 2%;" class="btn btn-success"><a href="/take-away-coffee/index.php/Admin/Index/show_goods" style="text-decoration: none; color: white;">AddGoods</a></button>
             <table class="table">
-                <tr><th>Username</th><th>Name</th><th>Delete</th></tr>
+                <tr><th>Goodsname</th><th>Price</th><th>Delete</th></tr>
                 <?php if(is_array($li)): $i = 0; $__LIST__ = $li;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$li): $mod = ($i % 2 );++$i;?><tr>
-                    <td><a href="/take-away-coffee/index.php/Admin/Index/show_user?id=<?php echo ($li["id"]); ?>" style="text-decoration: none;"><?php echo ($li["username"]); ?></a>
+                    <td><a href="/take-away-coffee/index.php/Admin/Index/show_goods?id=<?php echo ($li["id"]); ?>" style="text-decoration: none;"><?php echo ($li["goodsname"]); ?></a>
                     </td>
                     <td>
-                        <?php echo ($li["name"]); ?>
+                        <?php echo ($li["price"]); ?>$
                     </td>
                     <td>
                         <button type="button" class="delete btn btn-danger">delete<p style="display: none;"><?php echo ($li["id"]); ?></p>

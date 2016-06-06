@@ -16,7 +16,7 @@
 	<script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 	<script>
         $(function(){
-            $(".title").find("ul li:eq(0)").addClass("active");
+            $(".title").find("ul li:eq(2)").addClass("active");
         });
         $(document).ready(function(){
             setInterval(function(){
@@ -27,13 +27,6 @@
                     }
                 });
             },100);
-            $(".delete").click(function(){
-                var id = $(this).children('p').html();
-                $.post("/take-away-coffee/index.php/Admin/Index/dele_user?id="+id,function(data){
-                    alert(data);
-                    window.location.href="/take-away-coffee/index.php/Admin/Index/index";
-                });
-            });
         });
     </script>
 </head>
@@ -56,18 +49,17 @@
     </div>
     <div class="row">
         <div class="col-sm-offset-3 col-sm-6" style="margin-top: 1%; background-color: #FFFFFF; height: 500px; border: #CCC solid 1px; box-shadow: 2px 2px 10px #c0c0c0;" >
-            <h3 style="text-align: center;">管理用户</h3>
+            <h3 style="text-align: center;">历史订单</h3>
             <table class="table">
-                <tr><th>Username</th><th>Name</th><th>Delete</th></tr>
+                <tr><th>BookingNumber</th><th>Status</th><th>Time</th></tr>
                 <?php if(is_array($li)): $i = 0; $__LIST__ = $li;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$li): $mod = ($i % 2 );++$i;?><tr>
-                    <td><a href="/take-away-coffee/index.php/Admin/Index/show_user?id=<?php echo ($li["id"]); ?>" style="text-decoration: none;"><?php echo ($li["username"]); ?></a>
+                    <td><a href="/take-away-coffee/index.php/Admin/Index/show_booking?id=<?php echo ($li["id"]); ?>" style="text-decoration: none;"><?php echo ($li["id"]); ?></a>
                     </td>
                     <td>
-                        <?php echo ($li["name"]); ?>
+                        <?php if($li['status'] == 0): ?>未接单</h4><?php elseif($li['status'] == 1): ?>已接单</h4><?php else: ?>已拒绝</h4><?php endif; ?>
                     </td>
                     <td>
-                        <button type="button" class="delete btn btn-danger">delete<p style="display: none;"><?php echo ($li["id"]); ?></p>
-                        </button>
+                        <?php echo ($li["time"]); ?>
                     </td>
                     </tr><?php endforeach; endif; else: echo "" ;endif; ?>   
             </table>

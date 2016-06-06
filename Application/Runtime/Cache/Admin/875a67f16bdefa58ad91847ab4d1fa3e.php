@@ -16,7 +16,7 @@
 	<script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 	<script>
         $(function(){
-            $(".title").find("ul li:eq(0)").addClass("active");
+            $(".title").find("ul li:eq(3)").addClass("active");
         });
         $(document).ready(function(){
             setInterval(function(){
@@ -27,12 +27,12 @@
                     }
                 });
             },100);
-            $(".delete").click(function(){
-                var id = $(this).children('p').html();
-                $.post("/take-away-coffee/index.php/Admin/Index/dele_user?id="+id,function(data){
-                    alert(data);
-                    window.location.href="/take-away-coffee/index.php/Admin/Index/index";
-                });
+            if($("#id").val() != "")
+            {
+               $("#title").html("修改商品信息");
+            }
+            $("#submit").click(function(){
+                alert("OK!");
             });
         });
     </script>
@@ -56,23 +56,29 @@
     </div>
     <div class="row">
         <div class="col-sm-offset-3 col-sm-6" style="margin-top: 1%; background-color: #FFFFFF; height: 500px; border: #CCC solid 1px; box-shadow: 2px 2px 10px #c0c0c0;" >
-            <h3 style="text-align: center;">管理用户</h3>
-            <table class="table">
-                <tr><th>Username</th><th>Name</th><th>Delete</th></tr>
-                <?php if(is_array($li)): $i = 0; $__LIST__ = $li;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$li): $mod = ($i % 2 );++$i;?><tr>
-                    <td><a href="/take-away-coffee/index.php/Admin/Index/show_user?id=<?php echo ($li["id"]); ?>" style="text-decoration: none;"><?php echo ($li["username"]); ?></a>
-                    </td>
-                    <td>
-                        <?php echo ($li["name"]); ?>
-                    </td>
-                    <td>
-                        <button type="button" class="delete btn btn-danger">delete<p style="display: none;"><?php echo ($li["id"]); ?></p>
-                        </button>
-                    </td>
-                    </tr><?php endforeach; endif; else: echo "" ;endif; ?>   
-            </table>
-            <div style="position: absolute;left: 30%;top:85%;">
-                <?php echo ($page); ?>
+                <h3 id="title" style="text-align: center;">添加商品</h3>
+            <div class="col-md-offset-3 col-md-6" style="margin-top: 5%;">
+                <form id="infoform" action="/take-away-coffee/index.php/Admin/Index/add_goods" method="post" enctype="multipart/form-data">
+                  <input type="hidden" name="id" value="<?php echo ($li[0]['id']); ?>">
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Goodsname</label>
+                    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Goodsname" name="goodsname" value="<?php echo ($li[0]['goodsname']); ?>">
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputPassword1">Price</label>
+                    <input type="text" class="form-control" id="exampleInputPassword1" name="price" placeholder="0" value="<?php echo ($li[0]['price']); ?>">
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputPassword1">Describe</label>
+                    <input type="text" class="form-control" id="exampleInputPassword1" name="describe" placeholder="Describe..." value="<?php echo ($li[0]['describe']); ?>">
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputFile">Goods'Picture</label>
+                    <input type="file" name="photo">
+                  </div>
+                  <button type="submit" id="submit" class="btn btn-primary">Submit</button>
+                  <button type="button" class="btn btn-success"><a href="/take-away-coffee/index.php/Admin/Index/goods" style="text-decoration: none; color:white;">Back</a></button>
+                </form>
             </div>
         </div>
     </div>

@@ -27,12 +27,8 @@
                     }
                 });
             },100);
-            $(".delete").click(function(){
-                var id = $(this).children('p').html();
-                $.post("__APP__/Admin/Index/dele_user?id="+id,function(data){
-                    alert(data);
-                    window.location.href="__APP__/Admin/Index/index";
-                });
+            $("#submit").click(function(){
+                alert("OK!");
             });
         });
     </script>
@@ -56,26 +52,36 @@
     </div>
     <div class="row">
         <div class="col-sm-offset-3 col-sm-6" style="margin-top: 1%; background-color: #FFFFFF; height: 500px; border: #CCC solid 1px; box-shadow: 2px 2px 10px #c0c0c0;" >
-            <h3 style="text-align: center;">管理用户</h3>
-            <table class="table">
-                <tr><th>Username</th><th>Name</th><th>Delete</th></tr>
-                <volist id="li" name="li">
-                    <tr>
-                    <td><a href="__APP__/Admin/Index/show_user?id={$li.id}" style="text-decoration: none;">{$li.username}</a>
-                    </td>
-                    <td>
-                        {$li.name}
-                    </td>
-                    <td>
-                        <button type="button" class="delete btn btn-danger">delete<p style="display: none;">{$li.id}</p>
-                        </button>
-                    </td>
-                    </tr>
-                </volist>   
-            </table>
-            <div style="position: absolute;left: 30%;top:85%;">
-                {$page}
+            <div class="page-header">
+                    <h3 style="text-align: center;">{$li[0]['name']}的资料 <small style="float: right;">修改资料</small></h3>
             </div>
+            <form class="form-horizontal" id="infoform" action="__APP__/Admin/Index/modify_user" method="post" style="margin-top: 10%;">
+                <input type="hidden" name="id" id="id" value="{$li[0]['id']}"/>
+                <fieldset>
+                    <div class="control-group col-sm-offset-3 col-sm-6" style="margin-top: 50px;">
+                        <label class="control-label col-sm-3" for="name">姓名</label>
+                        <div class="controls col-sm-4">
+                            <input type="text" name="name" class="input-xlarge" id="name" value="{$li[0]['name']}" />
+                        </div>
+                    </div>
+                    <div class="control-group col-sm-offset-3 col-sm-6" style="margin-top: 10px;">
+                        <label class="control-label col-sm-3" for="password">密码</label>
+                        <div class="controls col-sm-4">
+                            <input type="password" name="password" class="input-xlarge" id="password" value="{$li[0]['password']}" />
+                        </div>
+                    </div>
+                    <div class="control-group col-sm-offset-3 col-sm-6" style="margin-top: 10px;">
+                        <label class="control-label col-sm-3" for="phone">手机号</label>
+                        <div class="controls col-sm-4">
+                            <input type="text" name="phone" class="input-xlarge" id="phone" value="{$li[0]['phone']}" />
+                        </div>
+                    </div> 
+                    <div class="form-actions col-sm-offset-6 col-sm-6" style="margin-top: 10px;">
+                        <input type="submit" id="submit" class="btn btn-primary btn-large" value="修改" />
+                        <button type="button" class="btn btn-success"><a href="__APP__/Admin/Index/index" style="text-decoration: none;color:white;">返回</a></button>
+                    </div>                  
+                </fieldset>
+            </form>
         </div>
     </div>
     <div class="row">

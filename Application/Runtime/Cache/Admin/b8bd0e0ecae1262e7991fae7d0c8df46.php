@@ -16,7 +16,7 @@
 	<script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 	<script>
         $(function(){
-            $(".title").find("ul li:eq(0)").addClass("active");
+            $(".title").find("ul li:eq(4)").addClass("active");
         });
         $(document).ready(function(){
             setInterval(function(){
@@ -27,12 +27,8 @@
                     }
                 });
             },100);
-            $(".delete").click(function(){
-                var id = $(this).children('p').html();
-                $.post("/take-away-coffee/index.php/Admin/Index/dele_user?id="+id,function(data){
-                    alert(data);
-                    window.location.href="/take-away-coffee/index.php/Admin/Index/index";
-                });
+            $("#submit").click(function(){
+                alert("OK!");
             });
         });
     </script>
@@ -56,24 +52,29 @@
     </div>
     <div class="row">
         <div class="col-sm-offset-3 col-sm-6" style="margin-top: 1%; background-color: #FFFFFF; height: 500px; border: #CCC solid 1px; box-shadow: 2px 2px 10px #c0c0c0;" >
-            <h3 style="text-align: center;">管理用户</h3>
-            <table class="table">
-                <tr><th>Username</th><th>Name</th><th>Delete</th></tr>
-                <?php if(is_array($li)): $i = 0; $__LIST__ = $li;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$li): $mod = ($i % 2 );++$i;?><tr>
-                    <td><a href="/take-away-coffee/index.php/Admin/Index/show_user?id=<?php echo ($li["id"]); ?>" style="text-decoration: none;"><?php echo ($li["username"]); ?></a>
-                    </td>
-                    <td>
-                        <?php echo ($li["name"]); ?>
-                    </td>
-                    <td>
-                        <button type="button" class="delete btn btn-danger">delete<p style="display: none;"><?php echo ($li["id"]); ?></p>
-                        </button>
-                    </td>
-                    </tr><?php endforeach; endif; else: echo "" ;endif; ?>   
-            </table>
-            <div style="position: absolute;left: 30%;top:85%;">
-                <?php echo ($page); ?>
+            <div class="page-header">
+                <h3 style="text-align: center;">管理管理员</h3>
             </div>
+            <form class="form-horizontal" id="infoform" action="/take-away-coffee/index.php/Admin/Index/modify_user" method="post" style="margin-top: 10%;">
+                <input type="hidden" name="id" id="id" value="<?php echo ($li[0]['id']); ?>"/>
+                <fieldset>
+                    <div class="control-group col-sm-offset-3 col-sm-6" style="margin-top: 50px;">
+                        <label class="control-label col-sm-3" for="username">帐号</label>
+                        <div class="controls col-sm-4">
+                            <input type="text" name="username" class="input-xlarge" id="username" value="<?php echo ($li[0]['username']); ?>" />
+                        </div>
+                    </div>
+                    <div class="control-group col-sm-offset-3 col-sm-6" style="margin-top: 10px;">
+                        <label class="control-label col-sm-3" for="password">密码</label>
+                        <div class="controls col-sm-4">
+                            <input type="password" name="password" class="input-xlarge" id="password" value="<?php echo ($li[0]['password']); ?>" />
+                        </div>
+                    </div>
+                    <div class="form-actions col-sm-offset-7 col-sm-6" style="margin-top: 10px;">
+                        <input type="submit" id="submit" class="btn btn-primary btn-large" value="修改" />
+                    </div>                  
+                </fieldset>
+            </form>
         </div>
     </div>
     <div class="row">
