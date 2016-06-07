@@ -22,13 +22,15 @@
                 $(".title").find("ul li:eq(2)").addClass("active");
         });
         $(document).ready(function(){
-            setInterval(function(){
+            var T = setInterval(function(){
                 $.post("/take-away-coffee/index.php/Admin/Index/new_booking",function(data){
                     if(data != 0)
                     {
                         $("#new").html(data);
                     }
                 });
+                if($("#adminid").val() == "")
+                    clearInterval(T);
             },100);
             $("#correct").click(function(){
                 $.post("/take-away-coffee/index.php/Admin/Index/check_booking?op=correct&&id=" + $("#id").val(),function(data){
@@ -55,6 +57,7 @@
 <div class="container-fluid">
     <div class="row">
         <h1 style="text-align: center;">后台管理</h1>
+        <input type="hidden" id="adminid" value="<?php echo ($username); ?>">
     </div>
     <div class="row">
         <div class="title col-sm-offset-3 col-sm-6">
@@ -82,6 +85,7 @@
                 <h4>甜　度　:　<?php if($li[0]['candy'] == 0): ?>0%</h4>
                                <?php elseif($li[0]['candy'] == 1): ?>25%</h4>
                                <?php elseif($li[0]['candy'] == 2): ?>50%</h4>
+                               <?php elseif($li[0]['candy'] == 3): ?>75%</h4>
                                <?php else: ?>100%</h4><?php endif; ?>
                 <h4>冷　热　:　<?php if($li[0]['cold'] == 0): ?>冰</h4>
                                <?php elseif($li[0]['cold'] == 1): ?>常温</h4>

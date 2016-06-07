@@ -19,7 +19,7 @@ class LoginController extends Controller
 		$arr = $user->where($where)->select();
 		if($arr)
 		{
-			$_SESSION['username'] = $username;
+			$_SESSION['adminusername'] = $username;
 			$this->redirect("Index/index");
 		}
 		else

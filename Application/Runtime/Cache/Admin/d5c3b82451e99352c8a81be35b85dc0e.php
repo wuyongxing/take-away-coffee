@@ -19,12 +19,15 @@
             $(".title").find("ul li:eq(2)").addClass("active");
         });
         $(document).ready(function(){
-            setInterval(function(){
-                $.post("/take-away-coffee/index.php/Admin/Index/new_booking",function(data){
-                    if(data != 0)
-                    {
-                        $("#new").html(data);
-                    }
+            var T = setInterval(function(){
+            $.post("/take-away-coffee/index.php/Admin/Index/new_booking",function(data){
+                var json = eval("(" + data + ")");
+                if(json.num != 0)
+                {
+                    $("#new").html(json.num);
+                }
+                if(!json.flag)
+                    clearInterval(T); 
                 });
             },100);
         });
@@ -34,6 +37,7 @@
 <div class="container-fluid">
     <div class="row">
         <h1 style="text-align: center;">后台管理</h1>
+        <input type="hidden" id="adminid" value="<?php echo ($username); ?>">
     </div>
     <div class="row">
         <div class="title col-sm-offset-3 col-sm-6">

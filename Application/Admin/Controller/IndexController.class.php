@@ -8,7 +8,7 @@ class IndexController extends AuthorController
     	$user=M('user');
     	$where['kind'] = 1;
     	$count = $user->where($where)->count();
-    	$Page = new \Think\Page($count,1);
+    	$Page = new \Think\Page($count,6);
     	$Page->setConfig('theme',"<ul class='pagination'></li><li>%FIRST%</li><li>%UP_PAGE%</li><li>%LINK_PAGE%</li><li>%DOWN_PAGE%</li><li>%END%</li><li><a> %HEADER%  %NOW_PAGE%/%TOTAL_PAGE% 页</a></ul>");
     	$show = $Page->show();
     	$list = $user->where($where)->limit($Page->firstRow.','.$Page->listRows)->select();
@@ -63,7 +63,7 @@ class IndexController extends AuthorController
     	$booking = M("booking");
     	$where['status'] = 0;
     	$count = $booking->where($where)->count();
-    	$Page = new \Think\Page($count,2);
+    	$Page = new \Think\Page($count,8);
     	$Page->setConfig('theme',"<ul class='pagination'></li><li>%FIRST%</li><li>%UP_PAGE%</li><li>%LINK_PAGE%</li><li>%DOWN_PAGE%</li><li>%END%</li><li><a> %HEADER%  %NOW_PAGE%/%TOTAL_PAGE% 页</a></ul>");
     	$show = $Page->show();
     	$list = $booking->where($where)->limit($Page->firstRow.','.$Page->listRows)->select();
@@ -75,7 +75,7 @@ class IndexController extends AuthorController
     {
     	$booking = M("booking");
     	$count = $booking->where("status = 1 or status = 2")->count();
-    	$Page = new \Think\Page($count,2);
+    	$Page = new \Think\Page($count,8);
     	$Page->setConfig('theme',"<ul class='pagination'></li><li>%FIRST%</li><li>%UP_PAGE%</li><li>%LINK_PAGE%</li><li>%DOWN_PAGE%</li><li>%END%</li><li><a> %HEADER%  %NOW_PAGE%/%TOTAL_PAGE% 页</a></ul>");
     	$show = $Page->show();
     	$list = $booking->where("status = 1 or status = 2")->limit($Page->firstRow.','.$Page->listRows)->select();
@@ -88,7 +88,13 @@ class IndexController extends AuthorController
     	$booking=M('booking');
     	$where['status'] = 0;
     	$arr = $booking->where($where)->count();
-    	echo $arr;
+        if(!isset($_SESSION['adminusername']) || $_SESSION['adminusername'] == '')
+            $flag = false;
+        else 
+            $flag = true;
+        $ans['num'] = $arr;
+        $ans['flag'] = $flag;
+    	echo json_encode($ans);
     }
     public function show_booking()
     {
@@ -124,7 +130,7 @@ class IndexController extends AuthorController
     {
     	$goods = M('goods');
     	$count = $goods->count();
-    	$Page = new \Think\Page($count,2);
+    	$Page = new \Think\Page($count,6);
     	$Page->setConfig('theme',"<ul class='pagination'></li><li>%FIRST%</li><li>%UP_PAGE%</li><li>%LINK_PAGE%</li><li>%DOWN_PAGE%</li><li>%END%</li><li><a> %HEADER%  %NOW_PAGE%/%TOTAL_PAGE% 页</a></ul>");
     	$show = $Page->show();
     	$list = $goods->limit($Page->firstRow.','.$Page->listRows)->select();
@@ -161,6 +167,7 @@ class IndexController extends AuthorController
     		$where['price'] = $_POST['price'];
     	if(isset($_POST['describe']))
     		$where['describe'] = $_POST['describe'];
+        $where['time'] = date("Y-m-d H:i:s", time());
     	$goods = M('goods');
     	if(isset($_POST['id']) && $_POST['id'] != "")
     		$ok = $goods->save($where);

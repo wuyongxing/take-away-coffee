@@ -5,7 +5,7 @@ class AuthorController extends Controller
 {
 	public function _initialize()
 	{
-		if(!isset($_SESSION['username']) || $_SESSION['username'] == '')
+		if(!isset($_SESSION['adminusername']) || $_SESSION['adminusername'] == '')
 		{
 			$this->redirect('Login/index');
 		}

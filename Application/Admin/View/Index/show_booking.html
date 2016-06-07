@@ -22,12 +22,15 @@
                 $(".title").find("ul li:eq(2)").addClass("active");
         });
         $(document).ready(function(){
-            setInterval(function(){
-                $.post("__APP__/Admin/Index/new_booking",function(data){
-                    if(data != 0)
-                    {
-                        $("#new").html(data);
-                    }
+            var T = setInterval(function(){
+            $.post("__APP__/Admin/Index/new_booking",function(data){
+                var json = eval("(" + data + ")");
+                if(json.num != 0)
+                {
+                    $("#new").html(json.num);
+                }
+                if(!json.flag)
+                    clearInterval(T); 
                 });
             },100);
             $("#correct").click(function(){
@@ -55,6 +58,7 @@
 <div class="container-fluid">
     <div class="row">
         <h1 style="text-align: center;">后台管理</h1>
+        <input type="hidden" id="adminid" value="{$username}">
     </div>
     <div class="row">
         <div class="title col-sm-offset-3 col-sm-6">
@@ -82,6 +86,7 @@
                 <h4>甜　度　:　<if condition="$li[0]['candy'] eq 0">0%</h4>
                                <elseif condition="$li[0]['candy'] eq 1"/>25%</h4>
                                <elseif condition="$li[0]['candy'] eq 2"/>50%</h4>
+                               <elseif condition="$li[0]['candy'] eq 3"/>75%</h4>
                                <else />100%</h4>
                                </if>
                 <h4>冷　热　:　<if condition="$li[0]['cold'] eq 0">冰</h4>
