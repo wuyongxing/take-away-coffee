@@ -20,7 +20,7 @@
 <div class="container">
         <div class="row" style="background-color: #c40000;">
             <div class="col-md-offset-5 col-md-2"><h3 style="margin-top: 10%;"><a href="__APP__/Home/Index/index" style="color:white; text-decoration: none;">Coffee Online</a></h3></div>
-            <div class="col-md-offset-10">
+            <div class="col-md-offset-9">
                 <ul class="nav nav-pills" style="margin-top: 1%;">
                   <li role="presentation"><button class="btn btn-lg" style="background-color: #c40000; font-size: 20px;"><a style="text-decoration: none; color:white;" href="__APP__/Home/Person/index?id={$id}">{$name}</a></button></li>
                   <li role="presentation"><button class="btn btn-lg" style="background-color: #c40000; font-size: 20px;"><a style="text-decoration: none; color:white;" href="__APP__/Home/Login/logout">Logout</a></button></li>
@@ -43,7 +43,7 @@
                         <td>{$li.price}</td>
                         <td>{$li.num}</td>
                         <td><if condition="$li['candy'] eq 0">0%<elseif condition="$li['candy'] eq 1"/>25%<elseif condition="$li['candy'] eq 2"/>50%<elseif condition="$li['candy'] eq 3"/>75%<else />100%</if></td>
-                        <td><if condition="$li['cold'] eq 0">冰<elseif condition="$li['cold'] eq 1"/>常温<else />冰</if></td>
+                        <td><if condition="$li['cold'] eq 0">冰<elseif condition="$li['cold'] eq 1"/>常温<else />热</if></td>
                         <td>{$li.name}</td>
                         <td>{$li.phone}</td>
                         <td>{$li.time}</td>

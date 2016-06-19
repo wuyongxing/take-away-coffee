@@ -22,7 +22,7 @@
             var T = setInterval(function(){
             $.post("__APP__/Admin/Index/new_booking",function(data){
                 var json = eval("(" + data + ")");
-                console.log(json);
+               // console.log(json);
                 if(json.num != 0)
                 {
                     $("#new").html(json.num);
@@ -33,7 +33,7 @@
             },100);
             $(".delete").click(function(){
                 var id = $(this).children('p').html();
-                $.post("__APP__/Admin/Index/dele_user?id="+id,function(data){
+                $.post("__APP__/Admin/Index/dele_user",{"id":id},function(data){
                     alert(data);
                     window.location.href="__APP__/Admin/Index/index";
                 });

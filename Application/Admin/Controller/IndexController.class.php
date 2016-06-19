@@ -5,7 +5,7 @@ class IndexController extends AuthorController
 {
     public function index()
     {
-    	$user=M('user');
+    	$user=M('use');
     	$where['kind'] = 1;
     	$count = $user->where($where)->count();
     	$Page = new \Think\Page($count,6);
@@ -20,14 +20,14 @@ class IndexController extends AuthorController
     {
     	$where['id'] = $_GET['id'];
     	$where['kind'] = 1;
-    	$user=M('user');
+    	$user=M('use');
     	$arr = $user->where($where)->select();
     	$this->assign('li',$arr);
         $this->display();
     }
     public function modify_user()
     {
-    	$user=M('user');
+    	$user=M('use');
     	if(isset($_POST['id']))
     		$where['id'] = $_POST['id'];
     	if(isset($_POST['name']))
@@ -47,14 +47,12 @@ class IndexController extends AuthorController
     }
     public function dele_user()
     {
-    	$where['id'] = $_GET['id'];
-    	$user = M('user');
+    	$where['id'] = $_POST['id'];
+    	$user = M('use');
     	$ok |= $user->where($where)->delete();
     	$booking = M('booking');
-    	$where1['uid'] = $_GET['id'];
+    	$where1['uid'] = $_POST['id'];
     	$ok |= $booking->where($where1)->delete();
-    	$comment = M('comment');
-    	$ok |= $comment->where($where1)->delete();
     	if($ok) echo "OK";
     	else echo "Wrong"; 
     }
@@ -121,7 +119,7 @@ class IndexController extends AuthorController
     public function admin()
     {
     	$where['kind'] = 0;
-    	$user=M('user');
+    	$user=M('use');
     	$arr = $user->where($where)->select();
     	$this->assign('li',$arr);
         $this->display();
@@ -177,12 +175,10 @@ class IndexController extends AuthorController
     }
     public function dele_goods()
     {
-    	$where['id'] = $_GET['id'];
+    	$where['id'] = $_POST['id'];
     	$goods = M('goods');
     	$ok |= $goods->where($where)->delete();
-    	$where1['gid'] = $_GET['id'];
-    	$comment = M('comment');
-    	$ok |= $comment->where($where1)->delete();
+    	$where1['gid'] = $_POST['id'];
     	if($ok) echo "OK";
     	else echo "Wrong";
     }

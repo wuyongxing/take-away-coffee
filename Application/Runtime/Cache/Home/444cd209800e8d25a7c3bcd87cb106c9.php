@@ -19,11 +19,11 @@
 </head>
 <div class="container">
         <div class="row" style="background-color: #c40000;">
-            <div class="col-md-offset-5 col-md-2"><h3 style="margin-top: 10%;"><a href="/take-away-coffee/index.php/Home/Index/index" style="color:white; text-decoration: none;">Coffee Online</a></h3></div>
-            <div class="col-md-offset-10">
+            <div class="col-md-offset-5 col-md-2"><h3 style="margin-top: 10%;"><a href="/~s404410904/take-away-coffee/index.php/Home/Index/index" style="color:white; text-decoration: none;">Coffee Online</a></h3></div>
+            <div class="col-md-offset-9">
                 <ul class="nav nav-pills" style="margin-top: 1%;">
-                  <li role="presentation"><button class="btn btn-lg" style="background-color: #c40000; font-size: 20px;"><a style="text-decoration: none; color:white;" href="/take-away-coffee/index.php/Home/Person/index?id=<?php echo ($id); ?>"><?php echo ($name); ?></a></button></li>
-                  <li role="presentation"><button class="btn btn-lg" style="background-color: #c40000; font-size: 20px;"><a style="text-decoration: none; color:white;" href="/take-away-coffee/index.php/Home/Login/logout">Logout</a></button></li>
+                  <li role="presentation"><button class="btn btn-lg" style="background-color: #c40000; font-size: 20px;"><a style="text-decoration: none; color:white;" href="/~s404410904/take-away-coffee/index.php/Home/Person/index?id=<?php echo ($id); ?>"><?php echo ($name); ?></a></button></li>
+                  <li role="presentation"><button class="btn btn-lg" style="background-color: #c40000; font-size: 20px;"><a style="text-decoration: none; color:white;" href="/~s404410904/take-away-coffee/index.php/Home/Login/logout">Logout</a></button></li>
                 </ul>
             </div>
         </div>
@@ -42,7 +42,7 @@
                         <td><?php echo ($li["price"]); ?></td>
                         <td><?php echo ($li["num"]); ?></td>
                         <td><?php if($li['candy'] == 0): ?>0%<?php elseif($li['candy'] == 1): ?>25%<?php elseif($li['candy'] == 2): ?>50%<?php elseif($li['candy'] == 3): ?>75%<?php else: ?>100%<?php endif; ?></td>
-                        <td><?php if($li['cold'] == 0): ?>冰<?php elseif($li['cold'] == 1): ?>常温<?php else: ?>冰<?php endif; ?></td>
+                        <td><?php if($li['cold'] == 0): ?>冰<?php elseif($li['cold'] == 1): ?>常温<?php else: ?>热<?php endif; ?></td>
                         <td><?php echo ($li["name"]); ?></td>
                         <td><?php echo ($li["phone"]); ?></td>
                         <td><?php echo ($li["time"]); ?></td>

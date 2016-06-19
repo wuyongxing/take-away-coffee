@@ -32,7 +32,7 @@
             },100);
             $(".delete").click(function(){
                 var id = $(this).children('p').html();
-                $.post("__APP__/Admin/Index/dele_goods?id="+id,function(data){
+                $.post("__APP__/Admin/Index/dele_goods",{"id":id},function(data){
                     alert(data);
                     window.location.href="__APP__/Admin/Index/goods";
                 });

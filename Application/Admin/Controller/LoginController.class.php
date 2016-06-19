@@ -12,7 +12,7 @@ class LoginController extends Controller
 	{
 		$username = $_POST['username'];
 		$password = $_POST['password'];
-		$user=M('user');
+		$user=M('use');
 		$where['username'] = $username;
 		$where['password'] = $password;
 		$where['kind'] = 0;

@@ -18,10 +18,10 @@
         $(document).ready(function(){
             $("#submit").click(function(){
                 var d = $("#Loginform").serialize();
-                $.post("/take-away-coffee/index.php/Home/Login/login",d,function(data){
+                $.post("/~s404410904/take-away-coffee/index.php/Home/Login/login",d,function(data){
                     if(data == "OK")
                     {
-                        window.location.href = "/take-away-coffee/index.php/Home/Index/goods?id="+$("#gid").val();
+                        window.location.href = "/~s404410904/take-away-coffee/index.php/Home/Index/goods?id="+$("#gid").val();
                     }
                     else 
                     {
@@ -55,10 +55,10 @@
               var num = $("#num").val();
               if(name == "" || phone == "")
                 return;
-              $.post("/take-away-coffee/index.php/Home/Index/booking",{"uid":uid,"gid":gid,"candy":candy,"cold":cold,"name":name,"phone":phone,"num":num},function(data){
+              $.post("/~s404410904/take-away-coffee/index.php/Home/Index/booking",{"uid":uid,"gid":gid,"candy":candy,"cold":cold,"name":name,"phone":phone,"num":num},function(data){
                   if(data == "OK")
                   {
-                    window.location.href="/take-away-coffee/index.php/Home/Person/index?id="+uid;
+                    window.location.href="/~s404410904/take-away-coffee/index.php/Home/Person/index?id="+uid;
                   }
               });
             });
@@ -86,21 +86,21 @@
 <body>
     <div class="container">
         <div class="row" style="background-color: #c40000;">
-            <div class="col-md-offset-5 col-md-2"><h3 style="color:white; margin-top: 10%;"><a href="/take-away-coffee/index.php/Home/Index/index" style="color:white; text-decoration: none;">Coffee Online</a></h3></div>
+            <div class="col-md-offset-5 col-md-2"><h3 style="color:white; margin-top: 10%;"><a href="/~s404410904/take-away-coffee/index.php/Home/Index/index" style="color:white; text-decoration: none;">Coffee Online</a></h3></div>
             <input type="hidden" id="gid" value="<?php echo ($gid); ?>">
             <input type="hidden" id="uid" value="<?php echo ($uid); ?>">
-            <div class="col-md-offset-10">
+            <div class="col-md-offset-9">
                 <ul class="nav nav-pills" style="margin-top: 1%;">
                   <?php if($flag == 0): ?><li role="presentation"><button class="btn btn-lg" style="background-color: #c40000; font-size: 20px; color:white;" data-toggle="modal" data-target="#myModal">Login</button></li>
-                  <li role="presentation"><button class="btn btn-lg" style="background-color: #c40000; font-size: 20px;"><a style="text-decoration: none; color:white;" href="/take-away-coffee/index.php/Home/Login/index" target="_blank">Register</a></button></li>
-                  <?php else: ?><li role="presentation"><button class="btn btn-lg" style="background-color: #c40000; font-size: 20px;"><a style="text-decoration: none; color:white;" href="/take-away-coffee/index.php/Home/Person/index?id=<?php echo ($id); ?>"><?php echo ($name); ?></a></button></li>
-                  <li role="presentation"><button class="btn btn-lg" style="background-color: #c40000; font-size: 20px;"><a style="text-decoration: none; color:white;" href="/take-away-coffee/index.php/Home/Login/logout">Logout</a></button></li><?php endif; ?>
+                  <li role="presentation"><button class="btn btn-lg" style="background-color: #c40000; font-size: 20px;"><a style="text-decoration: none; color:white;" href="/~s404410904/take-away-coffee/index.php/Home/Login/index" target="_blank">Register</a></button></li>
+                  <?php else: ?><li role="presentation"><button class="btn btn-lg" style="background-color: #c40000; font-size: 20px;"><a style="text-decoration: none; color:white;" href="/~s404410904/take-away-coffee/index.php/Home/Person/index?id=<?php echo ($id); ?>"><?php echo ($name); ?></a></button></li>
+                  <li role="presentation"><button class="btn btn-lg" style="background-color: #c40000; font-size: 20px;"><a style="text-decoration: none; color:white;" href="/~s404410904/take-away-coffee/index.php/Home/Login/logout">Logout</a></button></li><?php endif; ?>
                 </ul>
             </div>
         </div>
         <div class="row" style="margin-top: 5%;">
           <div class="col-md-offset-1 col-md-5" style="height: 400px;">
-            <img src="/take-away-coffee/Public/img/<?php echo ($li['pic']); ?>" style="height:100%; width: 100%;">
+            <img src="/~s404410904/take-away-coffee/Public/img/<?php echo ($li['pic']); ?>" style="height:100%; width: 100%;">
           </div>
           <div class="col-md-4">
             <form>

@@ -15,7 +15,7 @@ class LoginController extends Controller {
     		return;
     	}
     	$where['username'] = $_POST['username'];
-    	$user = M('user');
+    	$user = M('use');
     	$ok = $user->where($where)->select();
     	if($ok)
     	{
@@ -40,7 +40,7 @@ class LoginController extends Controller {
     {
     	$username = $_POST['username'];
 		$password = $_POST['password'];
-		$user=M('user');
+		$user=M('use');
 		$where['username'] = $username;
 		$where['password'] = $password;
 		$arr = $user->where($where)->select();

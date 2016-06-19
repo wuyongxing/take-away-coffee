@@ -15,10 +15,10 @@
 		$(document).ready(function(){
 			$("#register").click(function(){
 				var d = $("#registerform").serialize();
-				$.post("/take-away-coffee/index.php/Home/Login/register",d,function(data){
+				$.post("/~s404410904/take-away-coffee/index.php/Home/Login/register",d,function(data){
 					if(data == "OK")
 					{
-						window.location.href="/take-away-coffee/index.php/Home/Index/index";
+						window.location.href="/~s404410904/take-away-coffee/index.php/Home/Index/index";
 					}
 					else
 					{
@@ -33,16 +33,16 @@
 <body>
 	<div class="container">
 		<div class="row" style="background-color: #c40000;">
-            <div class="col-md-offset-5 col-md-2"><h3 style="color:white; margin-top: 10%;"><a href="/take-away-coffee/index.php/Home/Index/index" style="color:white; text-decoration: none;">Coffee Online</a></h3></div>
+            <div class="col-md-offset-5 col-md-2"><h3 style="color:white; margin-top: 10%;"><a href="/~s404410904/take-away-coffee/index.php/Home/Index/index" style="color:white; text-decoration: none;">Coffee Online</a></h3></div>
             <div class="col-md-offset-10">
                 <ul class="nav nav-pills" style="margin-top: 1%;margin-left: 30%;">
-                  <li role="presentation"><a style="color: white; font-size: 20px;" href="/take-away-coffee/index.php/Home/Login/index">Register</a></li>
+                  <li role="presentation"><a style="color: white; font-size: 20px;" href="/~s404410904/take-away-coffee/index.php/Home/Login/index">Register</a></li>
                 </ul>
             </div>
         </div>
         <div class="row" style="margin-top: 1%;">
         	<div class="col-md-12">
-        		<img src="/take-away-coffee/Public/img/login.jpg" style="width: 100%;">
+        		<img src="/~s404410904/take-away-coffee/Public/img/login.jpg" style="width: 100%;">
         	</div>
         	<div style="z-index: 1;position: absolute;top: 22%;left: 69%;background-color: white; padding: 3% 3% 3% 3%; background-color: #000000;">
         		<form style="color:white;" id="registerform">
